@@ -30,17 +30,19 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8937
 TARGET_NO_BOOTLOADER := true
 
 # Architecture
-TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_VARIANT := cortex-a53
+TARGET_GLOBAL_CFLAGS     += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS   += -mfpu=neon -mfloat-abi=softfp
+TARGET_ARCH              := arm
+TARGET_ARCH_VARIANT      := armv7-a-neon
+TARGET_CPU_ABI           := armeabi-v7a
+TARGET_CPU_ABI2          := armeabi
+TARGET_CPU_VARIANT       := cortex-a53
 
 # Asserts
 TARGET_OTA_ASSERT_DEVICE := karate, karate_row, k33
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=tty60,115200,n8 androidboot.console=tty60 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_lev$
+BOARD_KERNEL_CMDLINE := console=tty60,115200,n8 androidboot.console=tty60 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3
 BOARD_KERNEL_CMDLINE += ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 vmalloc=350M
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
@@ -82,6 +84,7 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Charger
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
 #BOARD_NO_CHARGER_LED := true
 
 # CMHW
@@ -121,13 +124,13 @@ TARGET_PROVIDES_KEYMASTER := true
 TARGET_USES_MEDIA_EXTENSIONS := true
 
 # Partitions
-BOARD_FLASH_BLOCK_SIZE := 131072
+BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_BOOTIMAGE_PARTITION_SIZE := #16777216        #    16384 * 1024 mmcblk0p37
-BOARD_CACHEIMAGE_PARTITION_SIZE := #260014080      #   253920 * 1024 mmcblk0p52
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := #16879616    #    16484 * 1024 mmcblk0p38
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := #3455451136    #  3428080 * 1024 mmcblk0p53
-BOARD_USERDATAIMAGE_PARTITION_SIZE := #26401026048 # 25782252 * 1024 mmcblk0p54
+BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216        #    16384 * 1024 mmcblk0p37
+BOARD_CACHEIMAGE_PARTITION_SIZE := 260014080      #   253920 * 1024 mmcblk0p52
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16879616    #    16484 * 1024 mmcblk0p38
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 455451136    #  3428080 * 1024 mmcblk0p53
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 26401026048 # 25782252 * 1024 mmcblk0p54
 
 # Peripheral manager
 TARGET_PER_MGR_ENABLED := true
@@ -145,12 +148,26 @@ TARGET_USE_SDCLANG := true
 #BOARD_PROVIDES_RILD := true
 TARGET_RIL_VARIANT := caf
 
+#Dex pre-opt 
+ifeq ($(HOST_OS),linux)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
+      WITH_DEXPREOPT_PIC := true
+      ifneq ($(TARGET_BUILD_VARIANT),user)
+        # Retain classes.dex in APK's for non-user builds
+        DEX_PREOPT_DEFAULT := nostripping
+      endif
+    endif
+endif
 
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB      := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 TARGET_USERIMAGES_USE_EXT4 := true
 #TARGET_USERIMAGES_USE_F2FS := true
+
+# Enable sensor multi HAL
+USE_SENSOR_MULTI_HAL := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
