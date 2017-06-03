@@ -1,0 +1,16 @@
+[
+  {
+    "repository":  "android_kernel_lenovo_msm8937",
+    "target_path": "kernel/lenovo/msm8937"
+  },
+  {
+    "repository": "android_device_qcom_common",
+    "target_path": "device/qcom/common"
+  },
+  {
+    "remote": "Unicorn",
+    "repository": "proprietary_vendor_lenovo",
+    "target_path": "vendor/lenovo",
+    "branch":      "xpe-11.1"
+  }
+]
