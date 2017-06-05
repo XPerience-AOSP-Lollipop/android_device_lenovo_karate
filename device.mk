@@ -116,6 +116,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/qdcm_calib_data_ili7807d_1080p_video_YAS.xml:system/etc/qdcm_calib_data_ili7807d_1080p_video_YAS.xml \
     $(LOCAL_PATH)/configs/qdcm_calib_data_otm1901a_1080p_video_TianMa.xml:system/etc/qdcm_calib_data_otm1901a_1080p_video_TianMa.xml
 
+#FIRMWARE
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
+    $(LOCAL_PATH)/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw 
 # DRM
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-lite
