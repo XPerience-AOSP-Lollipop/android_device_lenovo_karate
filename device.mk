@@ -143,6 +143,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
 
+# IDC
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/idc/AVRCP.idc:system/usr/idc/AVRCP.idc \
+    $(LOCAL_PATH)/idc/qwerty.idc:system/usr/idc/qwerty.idc \
+    $(LOCAL_PATH)/idc/qwerty2.idc:system/usr/idc/qwerty2.idc \
+    $(LOCAL_PATH)/idc/uinputtv.idc:system/usr/idc/uinputtv.idc
+
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8937
