@@ -77,6 +77,24 @@ PRODUCT_PACKAGES += \
     tinypcminfo \
     tinyplay
 
+#Audio files
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/mixer_paths_karate.xml:system/etc/mixer_paths_karate \
+    $(LOCAL_PATH)/configs/mixer_paths_karate_a42.xml:system/etc/mixer_paths_karate_a42.xml \
+    $(LOCAL_PATH)/configs/mixer_paths_karate_a48.xml:system/etc/mixer_paths_karate_a48.xml \
+    $(LOCAL_PATH)/configs/mixer_paths_karate_b36.xml:system/etc/mixer_paths_karate_b36.xml \
+    $(LOCAL_PATH)/configs/media_profiles_8956.xml:system/etc/media_profiles_8956.xml \
+    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
+    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/media_codecs_8956.xml:system/etc/media_codecs_8956.xml \
+    $(LOCAL_PATH)/configs/ftm_test_config:system/etc/ftm_test_config \
+    $(LOCAL_PATH)/configs/ftm_test_config_wcd9335:system/etc/ftm_test_config_wcd9335 \
+    $(LOCAL_PATH)/configs/fts_test_karate_ofilm.ini:system/etc/fts_test_karate_ofilm \
+    $(LOCAL_PATH)/configs/fts_test_karate_plus_ofilm.ini:system/etc/fts_test_karate_plus_ofilm.ini \
+    $(LOCAL_PATH)/configs/audio_effects.conf:system/etc/audio_effects.conf \
+    $(LOCAL_PATH)/configs/audio_platform_info.xml:system/etc/audio_platform_info.xml \
+    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
+
 # Display
 PRODUCT_PACKAGES += \
     gralloc.msm8937 \
@@ -85,6 +103,11 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8937 \
     memtrack.msm8937 \
     libtinyxml
+
+#Display calibration
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/qdcm_calib_data_ili7807d_1080p_video_YAS.xml:system/etc/qdcm_calib_data_ili7807d_1080p_video_YAS.xml \
+    $(LOCAL_PATH)/configs/qdcm_calib_data_otm1901a_1080p_video_TianMa.xml:system/etc/qdcm_calib_data_otm1901a_1080p_video_TianMa.xml
 
 # DRM
 PRODUCT_PACKAGES += \
