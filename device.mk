@@ -217,6 +217,28 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8937
 
+#RAMDISK
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.qcom.early_boot.sh \
+    init.qcom.post_boot.sh \
+    init.lenovo.rc \
+    init.lenovo.common.rc \
+    init.qcom.rc \
+    init.qcom.factory.rc \
+    init.qcom.sh \
+    init.qcom.usb.rc \
+    init.qcom.usb.sh \
+    init.qcom.syspart_fixup.sh \
+    init.qcom.sensors.sh \
+    init.class_main.sh \
+    init.qcom.class_core.sh \
+    ueventd.qcom.rc \
+    init.qcom.bt.sh \
+    init.qcom.modem_links.sh \
+    init.qcom.wifi.sh \
+    init.qti.ims.sh \
+
 # RIL
 PRODUCT_PACKAGES += \
     librmnetctl \
