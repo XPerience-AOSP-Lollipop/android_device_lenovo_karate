@@ -39,7 +39,7 @@ TARGET_CPU_ABI2          := armeabi
 TARGET_CPU_VARIANT       := cortex-a53
 
 # Asserts
-TARGET_OTA_ASSERT_DEVICE := karate, karate_row, K33, LenovoK33a48_ROW, K33b36, k33a48
+TARGET_OTA_ASSERT_DEVICE := karate, karate_row, K33, LenovoK33a48_ROW, K33b36, k33a48, K33b36, K33a48
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=tty60,115200,n8 androidboot.console=tty60 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3
