@@ -572,6 +572,33 @@ vendor/lib/libmm-color-convertor.so
 vendor/lib/libmmosal.so
 vendor/lib/libvqzip.so
 
+#mmi
+vendor/lib/mmi_audio.so
+vendor/lib/mmi_battery.so
+vendor/lib/mmi_bluetooth.so
+vendor/lib/mmi_camera.so
+vendor/lib/mmi_cpu.so
+vendor/lib/mmi_finger_print.so
+vendor/lib/mmi_flashlight.so
+vendor/lib/mmi_fm.so
+vendor/lib/mmi_gps.so
+vendor/lib/mmi_headset.so
+vendor/lib/mmi_key.so
+vendor/lib/mmi_lcd.so
+vendor/lib/mmi_light.so
+vendor/lib/mmi_memory.so
+vendor/lib/mmi_nfc.so
+vendor/lib/mmi_otg.so
+vendor/lib/mmi_sarsensor.so
+vendor/lib/mmi_sensor.so
+vendor/lib/mmi_sim.so
+vendor/lib/mmi_sysinfo.so
+vendor/lib/mmi_touchext.so
+vendor/lib/mmi_touch.so
+vendor/lib/mmi_vibrator.so
+vendor/lib/mmi_wifi.so
+
+
 # Modem
 vendor/lib/libwms.so
 
@@ -683,7 +710,7 @@ etc/thermal-engine.conf
 vendor/bin/thermal-engine
 vendor/lib/libthermalclient.so
 vendor/lib/libthermalioctl.so
-
+n
 # Time services
 -app/TimeService/TimeService.apk
 bin/time_daemon
