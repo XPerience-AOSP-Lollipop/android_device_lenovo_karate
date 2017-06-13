@@ -206,18 +206,6 @@ MALLOC_SVELTE := true
 TARGET_USES_QTI_TELEPHONY := true
 TARGET_RIL_VARIANT := caf
 
-#Dex pre-opt 
-ifeq ($(HOST_OS),linux)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-      WITH_DEXPREOPT_PIC := true
-      ifneq ($(TARGET_BUILD_VARIANT),user)
-        # Retain classes.dex in APK's for non-user builds
-        DEX_PREOPT_DEFAULT := nostripping
-      endif
-    endif
-endif
-
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB      := $(LOCAL_PATH)/rootdir/fstab.qcom
