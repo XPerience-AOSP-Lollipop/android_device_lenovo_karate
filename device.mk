@@ -217,6 +217,28 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8937
 
+#RAMDISK
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.qcom.early_boot.sh \
+    init.qcom.post_boot.sh \
+    init.lenovo.rc \
+    init.lenovo.common.rc \
+    init.qcom.rc \
+    init.qcom.factory.rc \
+    init.qcom.sh \
+    init.qcom.usb.rc \
+    init.qcom.usb.sh \
+    init.qcom.syspart_fixup.sh \
+    init.qcom.sensors.sh \
+    init.class_main.sh \
+    init.qcom.class_core.sh \
+    ueventd.qcom.rc \
+    init.qcom.bt.sh \
+    init.qcom.modem_links.sh \
+    init.qcom.wifi.sh \
+    init.qti.ims.sh \
+
 # RIL
 PRODUCT_PACKAGES += \
     librmnetctl \
@@ -225,8 +247,8 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/sensors/hals.conf:system/etc/sensors/hals.conf \
-    $(LOCAL_PATH)/configs/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
+    $(LOCAL_PATH)/configs/hals.conf:system/etc/sensors/hals.conf \
+    $(LOCAL_PATH)/configs/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
 
 # Thermal
 PRODUCT_COPY_FILES += \
@@ -250,5 +272,13 @@ PRODUCT_PACKAGES += \
     tcpdump \
     wcnss_service \
     libwifi-hal-qcom
+
+# For userdebug builds
+ADDITIONAL_DEFAULT_PROPERTIES += \
+ ro.secure=0 \
+ ro.adb.secure=0 \
+ ro.debuggable=1 \
+ persist.service.adb.enable=1 \
+ security.perf_harden=0
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
