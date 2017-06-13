@@ -39,7 +39,7 @@ TARGET_CPU_ABI2          := armeabi
 TARGET_CPU_VARIANT       := cortex-a53
 
 # Asserts
-TARGET_OTA_ASSERT_DEVICE := karate, karate_row, K33, LenovoK33a48_ROW, K33b36, k33a48, K33b36, K33a48
+TARGET_OTA_ASSERT_DEVICE := karate, karate_row, K33, LenovoK33a48_ROW, K33b36, k33a48, K33b36, K33a48, K33b42
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=tty60,115200,n8 androidboot.console=tty60 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3
@@ -47,15 +47,21 @@ BOARD_KERNEL_CMDLINE := lpm_levels.sleep_disabled=1 gpt androidboot.bootdevice=7
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 2048
+BOARD_RAMDISK_OFFSET := 0x01000000
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 #BOARD_KERNEL_SEPARATED_DT := true
 #BOARD_KERNEL_LZ4C_DT := true
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+#BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 TARGET_KERNEL_ARCH := arm
 #LOCAL_KERNEL := device/lenovo/karate/kernel #use prebuiltkernel
 TARGET_KERNEL_CONFIG := karate_defconfig
 TARGET_KERNEL_SOURCE := kernel/lenovo/msm8937
 BOARD_KERNEL_IMAGE_NAME := zImage-dtb
 TARGET_KERNEL_APPEND_DTB := true
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
+TARGET_USE_SDCLANG := true
+
 
 # Audio
 AUDIO_FEATURE_ENABLED_AAC_ADTS_OFFLOAD := true
@@ -138,26 +144,37 @@ HAVE_ADRENO_SOURCE              := false
 BOARD_USES_ADRENO               := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 OVERRIDE_RS_DRIVER              := libRSDriver_adreno.so
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 TARGET_USES_C2D_COMPOSITION     := true
 TARGET_USES_ION                 := true
-TARGET_USES_NEW_ION_API         := true
+#TARGET_USES_NEW_ION_API         := true
+TARGET_USES_OVERLAY             := true
 USE_OPENGL_RENDERER             := true
 MAX_EGL_CACHE_KEY_SIZE          := 12*1024
 MAX_EGL_CACHE_SIZE              := 2048*1024
+VSYNC_EVENT_PHASE_OFFSET_NS     := 1000000
+SF_VSYNC_EVENT_PHASE_OFFSET_NS  := 1000000
 
 # FM
-AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
-TARGET_QCOM_NO_FM_FIRMWARE         := true
+BOARD_HAVE_QCOM_FM              := true
+TARGET_QCOM_NO_FM_FIRMWARE      := true
+
+# GPS
+USE_DEVICE_SPECIFIC_GPS         := true
+USE_DEVICE_SPECIFIC_LOC_API     := true
+TARGET_NO_RPC                   := true
 
 # Init
-#TARGET_INIT_VENDOR_LIB := libinit_karate
-#TARGET_RECOVERY_DEVICE_MODULES := libinit_karate
+TARGET_INIT_VENDOR_LIB := libinit_karate
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
+TARGET_RECOVERY_DEVICE_MODULES := libinit_karate
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
+BOARD_LIGHTS_VARIANT := aw2013
 
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
@@ -169,6 +186,7 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864        #    65536 * 1024 mmcblk0p34
 BOARD_CACHEIMAGE_PARTITION_SIZE := 258998272      #   252928 * 1024 mmcblk0p50
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864    #    65536 * 1024 mmcblk0p35
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3611295744    #  3526656 * 1024 mmcblk0p52
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 25754075136 # 25150464 * 1024 mmcblk0p54
 
 # Peripheral manager
@@ -180,11 +198,12 @@ TARGET_POWERHAL_VARIANT := qcom
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QC_TIME_SERVICES := true
-TARGET_USE_SDCLANG := true
+MALLOC_SVELTE := true
 
 # Radio
 #BOARD_PROVIDES_LIBRIL := true
 #BOARD_PROVIDES_RILD := true
+TARGET_USES_QTI_TELEPHONY := true
 TARGET_RIL_VARIANT := caf
 
 #Dex pre-opt 
