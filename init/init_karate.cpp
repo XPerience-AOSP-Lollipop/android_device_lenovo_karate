@@ -43,7 +43,7 @@
 
 #define CMDLINE_SIZE 1024
 
-//Take care about 3gb ram
+//Take care about 2gb ram
 int is2GB()
 {
     struct sysinfo sys;
@@ -122,7 +122,7 @@ void check_ram()
         property_set("ro.hwui.text_small_cache_height", "1024");
         property_set("ro.hwui.text_large_cache_width", "2048");
         property_set("ro.hwui.text_large_cache_height", "1024");
-    } else if(is3GB(){
+    } else if(is3GB()){
         // from - phone-xxhdpi-3072-dalvik-heap.mk and HWUI
         property_set("dalvik.vm.heapstartsize", "8m");
         property_set("dalvik.vm.heapgrowthlimit", "192m");
