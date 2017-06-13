@@ -1,4 +1,5 @@
 #
+# Copyright (C) 2017 The LineageOS Project
 # Copyright (C) 2017 The XPerience Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,9 +15,15 @@
 # limitations under the License.
 #
 
-# Inherit from cedric device
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+# Inherit from karate device
 $(call inherit-product, device/lenovo/karate/device.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := karate
 PRODUCT_NAME := full_karate
+PRODUCT_BRAND := Lenovo
+PRODUCT_MODEL := Lenovo K33
+PRODUCT_MANUFACTURER := LENOVO
